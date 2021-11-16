@@ -23,9 +23,9 @@ public class RegistrationTest {
 
     @Test
     void shouldAuthorizationSuccess(){
-        RegistrationData client = DataGenerator.Registration.activeUserDataGenerate();
+        RegistrationData client = DataGenerator.Registration.activeUserRegistration();
         $("[data-test-id='login'] input").setValue(client.getLogin());
-        $("[data-test-id='password'] input").setValue(client.getPass());
+        $("[data-test-id='password'] input").setValue(client.getPassword());
         $(withText("Продолжить")).click();
         $(withText("Личный кабинет")).shouldBe(visible);
 
@@ -35,7 +35,7 @@ public class RegistrationTest {
     void shouldAuthorizationLoginNotCorrect(){
         RegistrationData client = DataGenerator.Registration.activeUserRegistration();
         $("[data-test-id='login'] input").setValue(DataGenerator.Registration.notCorrectLogin());
-        $("[data-test-id='password'] input").setValue(client.getPass());
+        $("[data-test-id='password'] input").setValue(client.getPassword());
         $(withText("Продолжить")).click();
         $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldHave(text("Неверно указан логин или пароль"));
 
@@ -43,7 +43,7 @@ public class RegistrationTest {
 
     @Test
     void shouldAuthorizationPasswordNotCorrect(){
-        RegistrationData client = DataGenerator.Registration.activeUserDataGenerate();
+        RegistrationData client = DataGenerator.Registration.activeUserRegistration();
         $("[data-test-id='login'] input").setValue(client.getLogin());
         $("[data-test-id='password'] input").setValue(DataGenerator.Registration.notCorrectPassword());
         $(withText("Продолжить")).click();
@@ -54,7 +54,7 @@ public class RegistrationTest {
         void shouldBlockedUser(){
             RegistrationData client = DataGenerator.Registration.blockedUserRegistration();
             $("[data-test-id='login'] input").setValue(client.getLogin());
-            $("[data-test-id='password'] input").setValue(client.getPass());
+            $("[data-test-id='password'] input").setValue(client.getPassword());
             $(withText("Продолжить")).click();
             $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldHave(text("Пользователь заблокирован"));
 
