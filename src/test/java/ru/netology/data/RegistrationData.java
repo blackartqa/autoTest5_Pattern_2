@@ -9,6 +9,6 @@ import lombok.RequiredArgsConstructor;
 
 public class RegistrationData {
     private final String login;
-    private final String pass;
+    private final String password;
     private final String status;
 }

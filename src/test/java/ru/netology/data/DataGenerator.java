@@ -39,7 +39,7 @@ public class DataGenerator {
             );
         }
 
-        private static final RequestSpecification requestSpec = new RequestSpecBuilder()
+        private static RequestSpecification requestSpec = new RequestSpecBuilder()
                 .setBaseUri("http://localhost")
                 .setPort(9999)
                 .setAccept(ContentType.JSON)
@@ -47,7 +47,7 @@ public class DataGenerator {
                 .log(LogDetail.ALL)
                 .build();
 
-        public static RegistrationData activeUserRegistration(){
+            public static RegistrationData activeUserRegistration(){
             RegistrationData registrationData = activeUserDataGenerate();
             Gson gsonBuilder = new GsonBuilder().create();
             String jsonRegistrationData = gsonBuilder.toJson(registrationData);
