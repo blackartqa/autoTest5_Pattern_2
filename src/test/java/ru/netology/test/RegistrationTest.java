@@ -23,7 +23,7 @@ public class RegistrationTest {
 
     @Test
     void shouldAuthorizationSuccess(){
-        RegistrationData client = DataGenerator.Registration.activeUserRegistration();
+        RegistrationData client = DataGenerator.Registration.userRegistration("active");
         $("[data-test-id='login'] input").setValue(client.getLogin());
         $("[data-test-id='password'] input").setValue(client.getPassword());
         $(withText("Продолжить")).click();
@@ -33,7 +33,7 @@ public class RegistrationTest {
 
     @Test
     void shouldAuthorizationLoginNotCorrect(){
-        RegistrationData client = DataGenerator.Registration.activeUserRegistration();
+        RegistrationData client = DataGenerator.Registration.userRegistration("active");
         $("[data-test-id='login'] input").setValue(DataGenerator.Registration.generateRandomLogin());
         $("[data-test-id='password'] input").setValue(client.getPassword());
         $(withText("Продолжить")).click();
@@ -43,7 +43,7 @@ public class RegistrationTest {
 
     @Test
     void shouldAuthorizationPasswordNotCorrect(){
-        RegistrationData client = DataGenerator.Registration.activeUserRegistration();
+        RegistrationData client = DataGenerator.Registration.userRegistration("active");
         $("[data-test-id='login'] input").setValue(client.getLogin());
         $("[data-test-id='password'] input").setValue(DataGenerator.Registration.generateRandomPassword());
         $(withText("Продолжить")).click();
@@ -52,7 +52,7 @@ public class RegistrationTest {
 
         @Test
         void shouldBlockedUser(){
-            RegistrationData client = DataGenerator.Registration.blockedUserRegistration();
+            RegistrationData client = DataGenerator.Registration.userRegistration("blocked");
             $("[data-test-id='login'] input").setValue(client.getLogin());
             $("[data-test-id='password'] input").setValue(client.getPassword());
             $(withText("Продолжить")).click();

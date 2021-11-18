@@ -2,8 +2,6 @@ package ru.netology.data;
 
 
 import com.github.javafaker.Faker;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
@@ -31,13 +29,11 @@ public class DataGenerator {
                 .log(LogDetail.ALL)
                 .build();
 
-            public static RegistrationData activeUserRegistration(){
-            RegistrationData registrationData = generateUser("active");
-            Gson gsonBuilder = new GsonBuilder().create();
-            String jsonRegistrationData = gsonBuilder.toJson(registrationData);
+            public static RegistrationData userRegistration(String status){
+            RegistrationData registrationData = generateUser(status);
             given()
                     .spec(requestSpec)
-                    .body(jsonRegistrationData)
+                    .body(registrationData)
                     .when()
                     .post("/api/system/users")
                     .then()
@@ -45,19 +41,6 @@ public class DataGenerator {
             return registrationData;
         }
 
-        public static RegistrationData blockedUserRegistration(){
-            RegistrationData registrationData = generateUser("blocked");
-            Gson gsonBuilder = new GsonBuilder().create();
-            String jsonRegistartionData = gsonBuilder.toJson(registrationData);
-            given()
-                    .spec(requestSpec)
-                    .body(jsonRegistartionData)
-                    .when()
-                    .post("/api/system/users")
-                    .then()
-                    .statusCode(200);
-            return registrationData;
-        }
 
         public static String generateRandomLogin() {
             Faker faker = new Faker(new Locale("en"));
