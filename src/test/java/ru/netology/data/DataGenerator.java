@@ -73,12 +73,12 @@ public class DataGenerator {
             return registrationData;
         }
 
-        public static String notCorrectLogin() {
+        public static String generateRandomLogin() {
             Faker faker = new Faker(new Locale("en"));
             return faker.name().username();
         }
 
-        public static String notCorrectPassword() {
+        public static String generateRandomPassword() {
             Faker faker = new Faker(new Locale("en"));
             return faker.internet().password();
         }

@@ -34,7 +34,7 @@ public class RegistrationTest {
     @Test
     void shouldAuthorizationLoginNotCorrect(){
         RegistrationData client = DataGenerator.Registration.activeUserRegistration();
-        $("[data-test-id='login'] input").setValue(DataGenerator.Registration.notCorrectLogin());
+        $("[data-test-id='login'] input").setValue(DataGenerator.Registration.generateRandomLogin());
         $("[data-test-id='password'] input").setValue(client.getPassword());
         $(withText("Продолжить")).click();
         $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldHave(text("Неверно указан логин или пароль"));
@@ -45,7 +45,7 @@ public class RegistrationTest {
     void shouldAuthorizationPasswordNotCorrect(){
         RegistrationData client = DataGenerator.Registration.activeUserRegistration();
         $("[data-test-id='login'] input").setValue(client.getLogin());
-        $("[data-test-id='password'] input").setValue(DataGenerator.Registration.notCorrectPassword());
+        $("[data-test-id='password'] input").setValue(DataGenerator.Registration.generateRandomPassword());
         $(withText("Продолжить")).click();
         $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldHave(text("Неверно указан логин или пароль"));
     }
