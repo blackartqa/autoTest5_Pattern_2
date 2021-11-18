@@ -5,8 +5,6 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-
-
 public class RegistrationData {
     private final String login;
     private final String password;
