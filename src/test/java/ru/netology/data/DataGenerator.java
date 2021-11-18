@@ -19,22 +19,8 @@ public class DataGenerator {
     public static class Registration{
         private Registration(){}
 
-        public static RegistrationData activeUserDataGenerate(){
-            Faker faker = new Faker(new Locale("en"));
-            return new RegistrationData(
-                    faker.name().username(),
-                    faker.internet().password(),
-                    "active"
-            );
-        }
-
-        public static RegistrationData blockedUserDataGenerate(){
-            Faker faker = new Faker(new Locale("en"));
-            return new RegistrationData(
-                    faker.name().username(),
-                    faker.internet().password(),
-                    "blocked"
-            );
+        public static RegistrationData generateUser(String status) {
+            return new RegistrationData(generateRandomLogin(), generateRandomPassword(), status);
         }
 
         private static RequestSpecification requestSpec = new RequestSpecBuilder()
@@ -46,7 +32,7 @@ public class DataGenerator {
                 .build();
 
             public static RegistrationData activeUserRegistration(){
-            RegistrationData registrationData = activeUserDataGenerate();
+            RegistrationData registrationData = generateUser("active");
             Gson gsonBuilder = new GsonBuilder().create();
             String jsonRegistrationData = gsonBuilder.toJson(registrationData);
             given()
@@ -60,7 +46,7 @@ public class DataGenerator {
         }
 
         public static RegistrationData blockedUserRegistration(){
-            RegistrationData registrationData = blockedUserDataGenerate();
+            RegistrationData registrationData = generateUser("blocked");
             Gson gsonBuilder = new GsonBuilder().create();
             String jsonRegistartionData = gsonBuilder.toJson(registrationData);
             given()
