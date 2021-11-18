@@ -20,9 +20,8 @@ public class RegistrationTest {
     }
 
 
-
     @Test
-    void shouldAuthorizationSuccess(){
+    void shouldAuthorizationSuccess() {
         RegistrationData client = DataGenerator.Registration.userRegistration("active");
         $("[data-test-id='login'] input").setValue(client.getLogin());
         $("[data-test-id='password'] input").setValue(client.getPassword());
@@ -32,7 +31,7 @@ public class RegistrationTest {
     }
 
     @Test
-    void shouldAuthorizationLoginNotCorrect(){
+    void shouldAuthorizationLoginNotCorrect() {
         RegistrationData client = DataGenerator.Registration.userRegistration("active");
         $("[data-test-id='login'] input").setValue(DataGenerator.Registration.generateRandomLogin());
         $("[data-test-id='password'] input").setValue(client.getPassword());
@@ -42,7 +41,7 @@ public class RegistrationTest {
     }
 
     @Test
-    void shouldAuthorizationPasswordNotCorrect(){
+    void shouldAuthorizationPasswordNotCorrect() {
         RegistrationData client = DataGenerator.Registration.userRegistration("active");
         $("[data-test-id='login'] input").setValue(client.getLogin());
         $("[data-test-id='password'] input").setValue(DataGenerator.Registration.generateRandomPassword());
@@ -50,13 +49,13 @@ public class RegistrationTest {
         $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldHave(text("Неверно указан логин или пароль"));
     }
 
-        @Test
-        void shouldBlockedUser(){
-            RegistrationData client = DataGenerator.Registration.userRegistration("blocked");
-            $("[data-test-id='login'] input").setValue(client.getLogin());
-            $("[data-test-id='password'] input").setValue(client.getPassword());
-            $(withText("Продолжить")).click();
-            $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldHave(text("Пользователь заблокирован"));
+    @Test
+    void shouldBlockedUser() {
+        RegistrationData client = DataGenerator.Registration.userRegistration("blocked");
+        $("[data-test-id='login'] input").setValue(client.getLogin());
+        $("[data-test-id='password'] input").setValue(client.getPassword());
+        $(withText("Продолжить")).click();
+        $("[data-test-id='error-notification'] .notification__content").shouldBe(visible).shouldHave(text("Пользователь заблокирован"));
 
-   }
+    }
 }

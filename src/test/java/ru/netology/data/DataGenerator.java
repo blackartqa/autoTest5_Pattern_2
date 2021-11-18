@@ -12,10 +12,12 @@ import java.util.Locale;
 import static io.restassured.RestAssured.given;
 
 public class DataGenerator {
-    private DataGenerator(){}
+    private DataGenerator() {
+    }
 
-    public static class Registration{
-        private Registration(){}
+    public static class Registration {
+        private Registration() {
+        }
 
         public static RegistrationData generateUser(String status) {
             return new RegistrationData(generateRandomLogin(), generateRandomPassword(), status);
@@ -29,7 +31,7 @@ public class DataGenerator {
                 .log(LogDetail.ALL)
                 .build();
 
-            public static RegistrationData userRegistration(String status){
+        public static RegistrationData userRegistration(String status) {
             RegistrationData registrationData = generateUser(status);
             given()
                     .spec(requestSpec)
